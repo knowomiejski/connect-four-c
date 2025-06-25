@@ -297,6 +297,13 @@ int ***startGame(int*** board) {
         printf("Choose a column: \n");
         scanf("%d", &userSelectedColumn);
 
+        if (userSelectedColumn > rowSize || userSelectedColumn <= 0) {
+            printf("Invalid column, try again... \n");
+            // resets on player next loop
+            currentPlayer = !currentPlayer;
+            continue;
+        }
+
         struct TokenPlacement placedToken = placeToken(board, userSelectedColumn    );
         if (placedToken.columnIndex == -1 && placedToken.rowIndex == -1) {
             break;
